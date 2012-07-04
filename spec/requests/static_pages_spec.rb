@@ -1,32 +1,45 @@
 require 'spec_helper'
 
-def page(path,header,title=nil)
-  title ||= header
-  it "should have the content '#{header}'" do
-    visit "/static_pages/#{path}"
-    page.should have_selector('h1', :text=>header)
-  end
-
-  it "should have the title '#{title}'" do
-    visit "/static_pages/#{path}"
-    page.should have_selector('title',
-             :text => "#{base_title} | #{title}")
-  end
-end
-
 describe "Static Pages" do
 
   let (:base_title) { 'Ruby on Rails Tutorial Sample App' }
 
   describe "Home Page"  do
-    page('home', 'Sample App', 'Home')
+
+    it "should have the content 'Home'" do
+      visit "/static_pages/home"
+      page.should have_selector('h1', :text=>'Sample App')
+    end
+
+    it "should not have custom page title" do
+        visit "/static_pages/home"
+        page.should_not have_selector('title', :text => '| Home')
+    end
   end
 
   describe "Help Page" do
-    page('help', 'Help')
+    it "should have the content 'Help'" do
+      visit "/static_pages/help"
+      page.should have_selector('h1', :text=>'Help')
+    end
+
+    it "should have the title 'Help'" do
+      visit "/static_pages/help"
+      page.should have_selector('title',
+               :text => "#{base_title} | Help")
+    end
   end
 
   describe "About Page" do
-      page('about', 'About')
+    it "should have the content 'About'" do
+      visit "/static_pages/about"
+      page.should have_selector('h1', :text=>'About')
+    end
+
+    it "should have the title 'About'" do
+      visit "/static_pages/about"
+      page.should have_selector('title',
+               :text => "#{base_title} | About")
+    end
   end
 end
