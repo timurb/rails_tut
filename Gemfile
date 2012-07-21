@@ -15,6 +15,7 @@ group :development, :test do
   gem 'spork', '0.9.0'
   gem 'therubyracer'
   gem 'annotate', '~> 2.4.1.beta', group: :development
+  gem 'factory_girl_rails', '1.4.0'
 end
 
 
