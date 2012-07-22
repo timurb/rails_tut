@@ -27,12 +27,14 @@ describe "UserPages" do
     before do
       visit signup_path
     end
+
     let(:submit) { "Create my account" }
+
     subject { page }
 
-      it "should not create invalid user" do
-        expect { click_button submit }.not_to change(User, :count)
-      end
+    it "should not create invalid user" do
+      expect { click_button submit }.not_to change(User, :count)
+    end
 
     describe "invalid user" do
       before { click_button submit }
@@ -46,7 +48,7 @@ describe "UserPages" do
 
       before do
         fill_in "Name",         with: user_name
-        fill_in "Email",        with: "user@example.com"
+        fill_in "Email",        with: "example@railstutorial.org"
         fill_in "Password",     with: "foobar"
         fill_in "Confirmation", with: "foobar"
       end
@@ -57,7 +59,7 @@ describe "UserPages" do
 
       describe "produces a page" do
         before { click_button submit }
-        it { should have_content 'Welcome' }
+        it { should have_selector('div.alert.alert-success', text: 'Welcome') }
         it { should_not have_content 'error' }
 
         describe "should redirect to shown profile" do
