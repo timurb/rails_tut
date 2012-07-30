@@ -8,8 +8,8 @@ describe "UserPages" do
     describe "Signup Page"  do
       before { visit signup_path }
 
-      it { should have_selector('h1',        :text => 'Signup') }
-      it { should have_selector('title',     :text => full_title('Signup')) }
+      it { should have_header('Signup') }
+      it { should have_title(full_title('Signup')) }
     end
 
     describe "Profile Page" do
@@ -18,8 +18,8 @@ describe "UserPages" do
       before { visit user_path(user) }
 
       it { should_not have_content('Welcome') }
-      it { should have_selector('h1',    text: user.name) }
-      it { should have_selector('title', text: user.name) }
+      it { should have_header(user.name) }
+      it { should have_title(user.name) }
     end
   end
 
@@ -40,7 +40,7 @@ describe "UserPages" do
       before { click_button submit }
 
       it { should have_content 'error' }
-      it { should have_selector('title', :text => "Signup") }
+      it { should have_title("Signup") }
     end
 
     describe "valid user" do
@@ -59,12 +59,13 @@ describe "UserPages" do
 
       describe "produces a page" do
         before { click_button submit }
-        it { should have_selector('div.alert.alert-success', text: 'Welcome') }
+        it { should have_success_message('Welcome') }
         it { should_not have_content 'error' }
+        it { should have_link('Sign out') }
 
         describe "should redirect to shown profile" do
-          it { should have_selector('h1',    text: user_name) }
-          it { should have_selector('title', text: user_name) }
+          it { should have_header(user_name) }
+          it { should have_title(user_name) }
         end
       end
     end
