@@ -1,19 +1,18 @@
 Feature: Sign up
 
-Scenario: Unsuccessfull signup
+Background:
   Given a user visits signup page
-  When a user submits invalid credentials
+
+Scenario: Unsuccessfull signup
+  When a user submits invalid information
   Then he should see an error message
 
 Scenario: Successfull signup
-  Given a user visits signup page
-  When a user submits valid credentials
+  When a user submits valid information
   Then he should see his profile page
-  And he should see the signout link
-  And a user should see a welcome message
+  And a user should see a success message
 
 Scenario: User already exist
   Given the user has an account
-  And a user visits signup page
-  When a user submits valid credentials
+  When a user submits valid information
   Then he should see an error message
