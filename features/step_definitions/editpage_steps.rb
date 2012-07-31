@@ -1,5 +1,4 @@
 When /^(he|a user) visits edit page$/ do |_|
-  steps "Given the user exists"
   visit edit_user_path(@user)
 end
 

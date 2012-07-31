@@ -1,6 +1,8 @@
 Feature: Edit profile
 
 Background:
+  Given the user has an account
+  And a user is signed in
   When a user visits edit page
 
 Scenario: Show edit page

@@ -64,7 +64,10 @@ describe "UserPages" do
 
   describe "edit" do
     let(:user) { FactoryGirl.create(:user) }
-    before { visit edit_user_path(user) }
+    before do
+      signin user
+      visit edit_user_path(user)
+    end
 
     describe "with valid information" do
       let(:new_name)  { "New Name" }
