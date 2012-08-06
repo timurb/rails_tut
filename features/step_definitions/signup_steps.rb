@@ -32,13 +32,3 @@ end
 When /^(he|a user) clicks signup button$/ do |_|
   click_button "Create my account"
 end
-
-
-Then /^(he|a user) should see (his|updated) profile page$/ do |_,_|
-  steps %Q{
-    Then he should not see an error message
-    And he should see the signout link
-  }
-  page.should have_header( @entered_info.name )
-  page.should have_title( @entered_info.name )
-end

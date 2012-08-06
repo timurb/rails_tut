@@ -38,3 +38,13 @@ Scenario: Friendly forwarding persistence
   And he clicks the signout link
   And a user signs in
   Then he should see his profile page
+
+Scenario: Signed in user should not be able to sign up again
+  Given a user is signed in
+  When a user visits signup page
+  Then he should see his profile page
+
+Scenario: Protect from signed in user submitting sign up again
+  Given a user is signed in
+  When a user submits a sign up
+  Then he should be redirected to his profile page

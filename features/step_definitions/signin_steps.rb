@@ -15,3 +15,11 @@ When /^(he|a user) submits valid credentials$/ do |_|
   fill_in "Password",     with: @entered_info.password
   click_button "Sign in"
 end
+
+When /^(he|a user) submits credentials for admin$/ do |_|
+  @entered_info = @admin
+
+  fill_in "Email",        with: @entered_info.email
+  fill_in "Password",     with: @entered_info.password
+  click_button "Sign in"
+end

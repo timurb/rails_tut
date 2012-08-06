@@ -1,12 +1,3 @@
-Given /^a user is not signed in$/ do
-end
-
-Given /^a user (is signed in|signs in)$/ do |_|
-  steps %Q{
-    When a user visits a signin page
-    And he submits valid credentials
-  }
-end
 
 When /^(he|a user) submits update form$/ do |_|
   page.driver.put user_path(@user)
@@ -36,4 +27,13 @@ end
 
 When /^he clicks the signout link$/ do
   click_link "Sign out"
+end
+
+When /^(he|a user) submits a sign up$/ do |_|
+  page.driver.post users_path
+end
+
+Then /^he should be redirected to his profile page$/ do
+  page.status_code.should == 302
+  page.response_headers["Location"].should == user_url(@user)
 end
