@@ -48,3 +48,16 @@ Scenario: Protect from signed in user submitting sign up again
   Given a user is signed in
   When a user submits a sign up
   Then he should be redirected to his profile page
+
+Scenario: Not signed in users should not be able to create microposts
+  Given a user is not signed in
+  When users submits a micropost creation
+  Then he should be redirected to a signin page
+  And the micropost should not be created
+
+Scenario: Not signed in users should not be able to delete microposts
+  Given a user is not signed in
+  And a micropost with content "Foo" exist
+  When users submits a micropost deletion
+  Then he should be redirected to a signin page
+  And the micropost should not be deleted

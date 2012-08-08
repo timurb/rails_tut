@@ -12,8 +12,8 @@ Given /^(he|the user) (exists|has an account)$/ do |_,_|
   @user = FactoryGirl.create(:user)
 end
 
-Given /^a wrong user (exists|has an account)$/ do |_|
-  @wrong_user = FactoryGirl.create(:user, email:"wrong@example.com" )
+Given /^(another|a wrong) user (exists|has an account)$/ do |_,_|
+  @another_user = @wrong_user = FactoryGirl.create(:user, email:"another@example.com" )
 end
 
 Given /^an admin user exists$/ do
@@ -55,6 +55,10 @@ end
 
 When /^a user visits a root page$/ do
   visit root_path
+end
+
+When /^a user visits his profile page$/ do
+  visit user_path(@user)
 end
 
 Then /^he should see sign in link$/ do

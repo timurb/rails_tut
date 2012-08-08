@@ -34,4 +34,21 @@ module SessionsHelper
   def store_location
     session[:return_to] = request.fullpath
   end
+
+  def signed_in_user
+    unless signed_in?
+      store_location
+      redirect_to signin_path, notice: "Please sign in."
+    end
+  end
+
+  def non_signed_in_user
+    if signed_in?
+      redirect_to user_path(current_user)
+    end
+  end
+
+  def admin_user
+    redirect_to root_path unless current_user.admin?
+  end
 end
