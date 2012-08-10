@@ -68,3 +68,20 @@ end
 Then /^he should not see "(.*?)" (link|menu)$/ do |link,_|
   page.should_not have_link(link)
 end
+
+When /^a user visits following page$/ do
+  visit following_user_path(@user)
+end
+
+When /^a user visits followers page$/ do
+  visit followers_user_path(@user)
+end
+
+When /^a user visits followers page for another user$/ do
+  visit followers_user_path(@another_user)
+end
+
+Then /^he should see "(.*?)" page$/ do |title|
+  page.should have_title( title )
+  page.should have_selector( 'h3', text: title)
+end

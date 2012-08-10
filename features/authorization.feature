@@ -61,3 +61,28 @@ Scenario: Not signed in users should not be able to delete microposts
   When users submits a micropost deletion
   Then he should be redirected to a signin page
   And the micropost should not be deleted
+
+Scenario: Not signed in users should not see the following page
+  Given a user is not signed in
+  When a user visits following page
+  Then he should see a signin page
+
+Scenario: Not signed in users should not see the followers page
+  Given a user is not signed in
+  When a user visits followers page
+  Then he should see a signin page
+
+Scenario: Not signed in users should not be able to follow
+  Given a user is not signed in
+  And another user has an account
+  When users submits follow for another user
+  Then he should be redirected to a signin page
+  And the user should not follow another user
+
+Scenario: Not signed in users should not be able to unfollow
+  Given a user is not signed in
+  And another user has an account
+  And user follows another user
+  When users submits unfollow for another user
+  Then he should be redirected to a signin page
+  And the user should follow another user

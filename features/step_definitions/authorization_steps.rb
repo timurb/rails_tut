@@ -37,3 +37,11 @@ Then /^he should be redirected to his profile page$/ do
   page.status_code.should == 302
   page.response_headers["Location"].should == user_url(@user)
 end
+
+When /^users submits follow for another user$/ do
+  page.driver.post relationships_path
+end
+
+When /^users submits unfollow for another user$/ do
+  page.driver.delete relationship_path(@another_user)
+end

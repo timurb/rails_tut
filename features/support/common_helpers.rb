@@ -1,4 +1,5 @@
 require File.join( File.dirname(__FILE__), '..', '..', 'test/shared_helpers' )
+include ApplicationHelper
 
 def enter_info(user)
   fill_in "Name",         with: user.name
